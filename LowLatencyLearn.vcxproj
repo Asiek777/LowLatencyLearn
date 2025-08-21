@@ -144,7 +144,9 @@
     <ClInclude Include="common\thread_utils.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="chapter3\mem_pool_example.cpp" />
     <ClCompile Include="chapter3\thread_example.cpp" />
+    <ClCompile Include="main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

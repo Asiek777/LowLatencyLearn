@@ -5,7 +5,7 @@
 namespace Common {
 
 	inline auto ASSERT(bool cond, const std::string& msg) noexcept {
-		if (!cond) {
+		if (!cond) [[unlikely]] {
 			std::cerr << msg << std::endl;
 			exit(EXIT_FAILURE);
 		}

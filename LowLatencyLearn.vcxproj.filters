@@ -26,5 +26,9 @@
     <ClCompile Include="chapter3\thread_example.cpp">
       <Filter>Chapter_Specific\Chapter3</Filter>
     </ClCompile>
+    <ClCompile Include="chapter3\mem_pool_example.cpp">
+      <Filter>Chapter_Specific\Chapter3</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp" />
   </ItemGroup>
 </Project>
