@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Common">
+      <UniqueIdentifier>{998f0b9a-7074-4025-b874-54923a2930fa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Chapter_Specific">
+      <UniqueIdentifier>{4b044a7a-e177-44e4-b20d-896856c6bceb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Chapter_Specific\Chapter3">
+      <UniqueIdentifier>{f834f53f-83b8-4138-b34d-aeaa0bf1d40f}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="common\macros.hpp">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="common\thread_utils.hpp">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="common\mem_pool.hpp">
+      <Filter>Common</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="chapter3\thread_example.cpp">
+      <Filter>Chapter_Specific\Chapter3</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
