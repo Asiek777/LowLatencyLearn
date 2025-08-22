@@ -21,6 +21,9 @@
     <ClInclude Include="common\mem_pool.hpp">
       <Filter>Common</Filter>
     </ClInclude>
+    <ClInclude Include="common\lf_queue.hpp">
+      <Filter>Common</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
@@ -28,6 +31,9 @@
       <Filter>Chapter_Specific\Chapter4</Filter>
     </ClCompile>
     <ClCompile Include="chapter4\thread_example.cpp">
+      <Filter>Chapter_Specific\Chapter4</Filter>
+    </ClCompile>
+    <ClCompile Include="chapter4\lf_queue_example.cpp">
       <Filter>Chapter_Specific\Chapter4</Filter>
     </ClCompile>
   </ItemGroup>

@@ -139,11 +139,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="common\lf_queue.hpp" />
     <ClInclude Include="common\macros.hpp" />
     <ClInclude Include="common\mem_pool.hpp" />
     <ClInclude Include="common\thread_utils.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="chapter4\lf_queue_example.cpp" />
     <ClCompile Include="chapter4\mem_pool_example.cpp" />
     <ClCompile Include="chapter4\thread_example.cpp" />
     <ClCompile Include="main.cpp" />

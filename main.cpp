@@ -1,6 +1,6 @@
 
-int thread_example(int, char**);
+int lf_queue_example(int, char**);
 
 int main(int arg_n, char** args) {
-	return thread_example(arg_n, args);
+	return lf_queue_example(arg_n, args);
 }
