@@ -1,7 +1,7 @@
 #include "common/mem_pool.hpp"
 
 struct MyStruct {
-	int d_[3];
+	int m_d[3];
 };
 
 int mem_pool_example(int, char**) {
@@ -15,14 +15,14 @@ int mem_pool_example(int, char**) {
 
 		std::cout << "prim elem: " << *p_ret << " allocated at: " <<
 			p_ret << std::endl;
-		std::cout << "struct elem: " << s_ret->d_[0] << "," << s_ret->d_[1] <<
-			"," << s_ret->d_[2] << " allocated at: " << s_ret << std::endl;
+		std::cout << "struct elem: " << s_ret->m_d[0] << "," << s_ret->m_d[1] <<
+			"," << s_ret->m_d[2] << " allocated at: " << s_ret << std::endl;
 
 		if (i % 5 == 0) {
 			std::cout << "deallocating prim elem: " << *p_ret <<
 				" from: " << p_ret << std::endl;
-			std::cout << "deallocating struct elem: " << s_ret->d_[0] << "," <<
-				s_ret->d_[1] << "," << s_ret->d_[2] << " from: " << s_ret << std::endl;
+			std::cout << "deallocating struct elem: " << s_ret->m_d[0] << "," <<
+				s_ret->m_d[1] << "," << s_ret->m_d[2] << " from: " << s_ret << std::endl;
 			prim_pool.deallocate(p_ret);
 			struct_pool.deallocate(s_ret);
 		}
