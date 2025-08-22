@@ -7,7 +7,7 @@
     <Filter Include="Chapter_Specific">
       <UniqueIdentifier>{4b044a7a-e177-44e4-b20d-896856c6bceb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Chapter_Specific\Chapter3">
+    <Filter Include="Chapter_Specific\Chapter4">
       <UniqueIdentifier>{f834f53f-83b8-4138-b34d-aeaa0bf1d40f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -23,12 +23,12 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="chapter3\thread_example.cpp">
-      <Filter>Chapter_Specific\Chapter3</Filter>
-    </ClCompile>
-    <ClCompile Include="chapter3\mem_pool_example.cpp">
-      <Filter>Chapter_Specific\Chapter3</Filter>
-    </ClCompile>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="chapter4\mem_pool_example.cpp">
+      <Filter>Chapter_Specific\Chapter4</Filter>
+    </ClCompile>
+    <ClCompile Include="chapter4\thread_example.cpp">
+      <Filter>Chapter_Specific\Chapter4</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

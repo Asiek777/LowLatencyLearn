@@ -1,7 +1,9 @@
-#include "common/macros.hpp"
+#pragma once
 
 #include <vector>
 #include <string>
+
+#include "common/macros.hpp"
 
 namespace Common {
 	template<typename T>
