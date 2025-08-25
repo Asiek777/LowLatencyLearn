@@ -1,6 +1,7 @@
 
-int lf_queue_example(int, char**);
+//This a very dummy way to run code examples from the book all in one project
+int logging_example(int, char**);
 
 int main(int arg_n, char** args) {
-	return lf_queue_example(arg_n, args);
+	return logging_example(arg_n, args);
 }

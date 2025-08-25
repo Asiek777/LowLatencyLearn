@@ -24,6 +24,12 @@
     <ClInclude Include="common\lf_queue.hpp">
       <Filter>Common</Filter>
     </ClInclude>
+    <ClInclude Include="common\logging.hpp">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="common\time_utils.hpp">
+      <Filter>Common</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
@@ -34,6 +40,9 @@
       <Filter>Chapter_Specific\Chapter4</Filter>
     </ClCompile>
     <ClCompile Include="chapter4\lf_queue_example.cpp">
+      <Filter>Chapter_Specific\Chapter4</Filter>
+    </ClCompile>
+    <ClCompile Include="chapter4\logging_example.cpp">
       <Filter>Chapter_Specific\Chapter4</Filter>
     </ClCompile>
   </ItemGroup>

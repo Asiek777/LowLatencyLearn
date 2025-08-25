@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -140,12 +140,15 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="common\lf_queue.hpp" />
+    <ClInclude Include="common\logging.hpp" />
     <ClInclude Include="common\macros.hpp" />
     <ClInclude Include="common\mem_pool.hpp" />
     <ClInclude Include="common\thread_utils.hpp" />
+    <ClInclude Include="common\time_utils.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="chapter4\lf_queue_example.cpp" />
+    <ClCompile Include="chapter4\logging_example.cpp" />
     <ClCompile Include="chapter4\mem_pool_example.cpp" />
     <ClCompile Include="chapter4\thread_example.cpp" />
     <ClCompile Include="main.cpp" />
