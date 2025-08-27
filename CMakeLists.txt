@@ -7,7 +7,7 @@ set(CMAKE_CXX_COMPILER g++)
 set(CMAKE_CXX_FLAGS "-std=c++2a -Wall -Wextra -Wpedantic")
 set(CMAKE_VERBOSE_MAKEFILE on)
 
-file(GLOB SOURCES "*.cpp")
+file(GLOB SOURCES "*.cpp" "common/*.cpp")
 
 include_directories(${PROJECT_SOURCE_DIR})
 
