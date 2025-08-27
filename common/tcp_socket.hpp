@@ -10,7 +10,7 @@ namespace Common {
 	constexpr size_t TCPBufferSize = 64 * 1024 * 1024;
 
 	struct TCPSocket {
-		int m_fd = 01;
+		int m_fd = -1;
 
 		char* m_send_buffer = nullptr;
 		size_t m_next_send_valid_index = 0;
@@ -41,7 +41,7 @@ namespace Common {
 				defaultRecvCallback(socket, rx_time); };
 		}
 
-		void destroy() noexcept;
+		void destroy();
 
 		~TCPSocket() {
 			destroy();

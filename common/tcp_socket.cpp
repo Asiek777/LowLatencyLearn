@@ -2,7 +2,7 @@
 
 namespace Common {
 
-	void TCPSocket::destroy() noexcept {
+	void TCPSocket::destroy()  {
 		close(m_fd);
 		m_fd = -1;
 	}
