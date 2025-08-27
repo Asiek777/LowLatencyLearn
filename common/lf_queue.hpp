@@ -2,7 +2,6 @@
 
 #include <atomic>
 #include <vector>
-#include <Windows.h>
 
 #include "common/macros.hpp"
 
@@ -43,7 +42,7 @@ namespace Common {
 		auto updateReadIndex() noexcept {
 			m_next_read_index = (m_next_read_index + 1) % m_store.size();
 			ASSERT(m_num_elements != 0, "Read and invalid element in: " +
-				std::to_string(GetCurrentThreadId()));
+				std::to_string(pthread_self()));
 			m_num_elements--;
 		}
 

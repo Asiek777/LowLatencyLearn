@@ -23,7 +23,7 @@ auto consumeFunction(LFQueue<MyStruct>* lfq) {
 	std::cout << "consumeFunction exiting." << std::endl;
 }
 
-int lf_queue_example(int, char**) {
+int main(int, char**) {
 	LFQueue<MyStruct> lfq(20);
 
 	auto ct = createAndStartThread(-1, "", consumeFunction, &lfq);

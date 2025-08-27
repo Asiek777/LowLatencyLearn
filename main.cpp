@@ -1,7 +1,12 @@
+#include <common/lf_queue.hpp>
+#include <common/logging.hpp>
+#include <common/macros.hpp>
+#include <common/mem_pool.hpp>
+#include <common/thread_utils.hpp>
+#include <common/socket_utils.hpp>
+#include <common/time_utils.hpp>
 
-//This a very dummy way to run code examples from the book all in one project
-int logging_example(int, char**);
 
 int main(int arg_n, char** args) {
-	return logging_example(arg_n, args);
+	return 0;
 }

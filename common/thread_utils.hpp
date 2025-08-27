@@ -4,12 +4,18 @@
 #include <string>
 #include <chrono>
 #include <iostream>
-#include <Windows.h>
+
+#include <sys/syscall.h>
 
 namespace Common {
 
 	inline auto setThreadCore(int core_id) noexcept {
-		return SetThreadAffinityMask(GetCurrentThread(), 1 << core_id);
+		cpu_set_t cpuset;
+
+		CPU_ZERO(&cpuset);
+		CPU_SET(core_id, &cpuset);
+
+		return (pthread_setaffinity_np(pthread_self(), sizeof(cpu_set_t), &cpuset) == 0);
 	}
 
 	template<typename T, typename... A>
@@ -19,12 +25,12 @@ namespace Common {
 		auto thread_body = [&] {
 			if (core_id >= 0 && !setThreadCore(core_id)) {
 				std::cerr << "Failed to set core affinity for " << name <<
-					" " << GetCurrentThreadId() << " to " << core_id << std::endl;
+					" " << pthread_self() << " to " << core_id << std::endl;
 				failed = true;
 				return;
 			}
 			std::cout << "Set core affinity for " << name << " "
-				<< GetCurrentThreadId() << " to " << core_id << std::endl;
+				<< pthread_self() << " to " << core_id << std::endl;
 			running = true;
 			std::forward<T>(func)((std::forward<A>(args))...);
 			};

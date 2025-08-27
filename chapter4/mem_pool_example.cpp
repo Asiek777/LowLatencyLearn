@@ -4,7 +4,7 @@ struct MyStruct {
 	int m_d[3];
 };
 
-int mem_pool_example(int, char**) {
+int main(int, char**) {
 	using namespace Common;
 
 	MemPool<double> prim_pool(50);

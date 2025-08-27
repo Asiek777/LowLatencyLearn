@@ -143,6 +143,7 @@
     <ClInclude Include="common\logging.hpp" />
     <ClInclude Include="common\macros.hpp" />
     <ClInclude Include="common\mem_pool.hpp" />
+    <ClInclude Include="common\socket_utils.hpp" />
     <ClInclude Include="common\thread_utils.hpp" />
     <ClInclude Include="common\time_utils.hpp" />
   </ItemGroup>

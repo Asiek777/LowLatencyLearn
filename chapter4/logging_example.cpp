@@ -1,6 +1,6 @@
 #include "common/logging.hpp"
 
-int logging_example(int, char**) {
+int main(int, char**) {
 	using namespace Common;
 
 	char c = 'd';

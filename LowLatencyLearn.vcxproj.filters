@@ -30,6 +30,9 @@
     <ClInclude Include="common\time_utils.hpp">
       <Filter>Common</Filter>
     </ClInclude>
+    <ClInclude Include="common\socket_utils.hpp">
+      <Filter>Common</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />

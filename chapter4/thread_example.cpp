@@ -18,7 +18,7 @@ auto dummyFunction(int a, int b, bool sleep) {
 	std::cout << "dummyFunction done." << std::endl;
 }
 
-int thread_example(int, char**) {
+int main(int, char**) {
 	using namespace Common;
 	auto t1 = createAndStartThread(-2, "dummyFunction1", dummyFunction, 12, 21, false);
 	auto t2 = createAndStartThread(1, "dummyFunction2", dummyFunction, 15, 51, true);
