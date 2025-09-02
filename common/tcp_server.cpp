@@ -9,6 +9,13 @@ namespace Common {
 		m_listener_socket.destroy();
 	}
 
+	auto TCPServer::epoll_add(TCPSocket* socket) {
+		epoll_event ev{};
+		ev.events = EPOLLET | EPOLLIN;
+		ev.data.ptr = reinterpret_cast<void*>(socket);
+		return epoll_ctl(m_efd, EPOLL_CTL_ADD, socket->m_fd, &ev) != -1;
+	}
+
 	void TCPServer::listen(const std::string& iface, int port) {
 		destroy();
 
@@ -22,13 +29,6 @@ namespace Common {
 
 		ASSERT(epoll_add(&m_listener_socket), "epoll_ctl()failed.error:" +
 			std::string(strerror(errno)));
-	}
-
-	auto TCPServer::epoll_add(TCPSocket* socket) {
-		epoll_event ev{};
-		ev.events = EPOLLET | EPOLLIN;
-		ev.data.ptr = reinterpret_cast<void*>(socket);
-		return epoll_ctl(m_efd, EPOLL_CTL_ADD, socket->m_fd, &ev) != -1;
 	}
 
 	auto TCPServer::epoll_del(TCPSocket* socket) {

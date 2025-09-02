@@ -22,7 +22,7 @@ namespace Common {
 
 	constexpr int MaxTCPServerBacklog = 1024;
 
-	std::string getIfaceIP(const std::string& iface) {
+	static std::string getIfaceIP(const std::string& iface) {
 		char buf[NI_MAXHOST] = { '\0' };
 		ifaddrs* ifaddr = nullptr;
 
@@ -40,7 +40,7 @@ if (getifaddrs(&ifaddr) != -1) {
 return buf;
 	}
 
-	bool setNonBlocking(int fd) {
+	static bool setNonBlocking(int fd) {
 		const auto flags = fcntl(fd, F_GETFL, 0);
 		if (flags == -1)
 			return false;
@@ -49,35 +49,35 @@ return buf;
 		return fcntl(fd, F_SETFL, flags | O_NONBLOCK) != 1;
 	}
 
-	bool setNoDelay(int fd) {
+	static bool setNoDelay(int fd) {
 		int one = 1;
 		return setsockopt(fd, IPPROTO_TCP, TCP_NODELAY,
 			reinterpret_cast<void*>(&one), sizeof(one)) != -1;
 	}
 
-	bool setSOTimestamp(int fd) {
+	static bool setSOTimestamp(int fd) {
 		int one = 1;
 		return setsockopt(fd, SOL_SOCKET, SO_TIMESTAMP,
 			reinterpret_cast<void*>(&one), sizeof(one)) != -1;
 	}
 
-	bool wouldBlock() {
+	static bool wouldBlock() {
 		return errno == EWOULDBLOCK || errno == EINPROGRESS;
 	}
 
-	bool setTTL(int fd, int ttl) {
+	static bool setTTL(int fd, int ttl) {
 		return setsockopt(fd, IPPROTO_IP, IP_TTL,
 			reinterpret_cast<void*>(&ttl), sizeof(ttl)) != -1;
 	}
 
-	bool setMcastTTL(int fd, int mcast_ttl) {
+	static bool setMcastTTL(int fd, int mcast_ttl) {
 		return setsockopt(fd, IPPROTO_IP, IP_MULTICAST_TTL,
 			reinterpret_cast<void*>(&mcast_ttl), sizeof(mcast_ttl)) != -1;
 	}
 
-	bool join(int fd, const std::string& ip, const std::string& iface, int port);
+	//static bool join(int fd, const std::string& ip, const std::string& iface, int port);
 
-	int createSocket(Logger& logger, const std::string& t_ip,
+	static int createSocket(Logger& logger, const std::string& t_ip,
 		const std::string& iface, int port, bool is_udp, bool is_blocking,
 		bool is_listening, int ttl, bool needs_so_timestamp) {
 
