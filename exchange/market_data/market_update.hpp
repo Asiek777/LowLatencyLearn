@@ -37,8 +37,8 @@ namespace Exchange {
 	struct MEMarketUpdate {
 		MarketUpdateType m_type = MarketUpdateType::INVALID;
 
-		TickerId m_ticker_id = TickerId_INVALID;
 		OrderId m_order_id = OrderId_INVALID;
+		TickerId m_ticker_id = TickerId_INVALID;
 		Side m_side = Side::INVALID;
 		Price m_price = Price_INVALID;
 		Qty m_qty = Qty_INVALID;

@@ -9,7 +9,7 @@ std::string Exchange::MEOrder::toString() const {
 		" coid:" << orderIdToString(m_client_order_id) <<
 		" moid:" << orderIdToString(m_market_order_id) <<
 		" side:" << sideToString(m_side) <<
-		" exec_qty:" << qtyToString(m_exec_qty) <<
+		" exec_qty:" << qtyToString(m_qty) <<
 		" price:" << priceToString(m_price) <<
 		" priority:" << priorityToString(m_priority) <<
 		" prev:" << orderIdToString(m_prev_order ? m_prev_order->m_market_order_id : OrderId_INVALID) <<
