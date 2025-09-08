@@ -3,7 +3,7 @@
 #include "common/types.hpp"
 #include "common/mem_pool.hpp"
 #include "common/logging.hpp"
-#include "exchange/order_server/client_respons.hpp"
+#include "exchange/order_server/client_response.hpp"
 #include "exchange/market_data/market_update.hpp"
 
 #include "common/time_utils.hpp"
