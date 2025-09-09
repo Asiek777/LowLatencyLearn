@@ -64,6 +64,21 @@ namespace Exchange {
 		}
 	};
 
+	struct OMClientResponse {
+		size_t m_seq_num = 0;
+		MEClientResponse m_me_client_response;
+
+		auto toString() const {
+			std::stringstream ss;
+			ss << "OMClientResponse" <<
+				" [" <<
+				" seq:" << m_seq_num <<
+				" :" << m_me_client_response.toString() <<
+				"]";
+			return ss.str();
+		}
+	};
+
 #pragma pack(pop)
 
 	typedef LFQueue<MEClientResponse> ClientResponseLFQueue;
