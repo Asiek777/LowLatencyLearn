@@ -55,6 +55,7 @@ namespace Exchange {
 			Side side, Price price, Qty qty, Qty new_market_order_id) noexcept;
 		void match(TickerId ticker_id, ClientId client_id, Side side, OrderId client_order_id, 
 			OrderId new_market_order_id, MEOrder* itr, Qty* leaves_qty) noexcept;
+		std::string toString(bool detailed, bool validity_check) const;
 
 
 	public:
