@@ -11,6 +11,7 @@
 #include <netdb.h>
 #include <fcntl.h>
 #include <netinet/tcp.h>
+#include <arpa/inet.h>
 
 #include "common/macros.hpp"
 #include "common/logging.hpp"
@@ -19,6 +20,28 @@
 
 namespace Common {
 
+	struct SocketCfg {
+		std::string m_ip;
+		std::string m_iface;
+		int m_port = -1;
+		bool m_is_udp = false;
+		bool m_is_listening = false;
+		bool m_needs_so_timestamp = false;
+
+		auto toString() const {
+			std::stringstream ss;
+			ss << "SocketCfg[ip: " <<
+				m_ip <<
+				" iface:" << m_iface <<
+				" port:" << m_port <<
+				" is_udp:" << m_is_udp <<
+				" is_listening:" << m_is_listening <<
+				" needs_SO_timestamp:" << m_needs_so_timestamp <<
+				"]";
+
+			return ss.str();
+		}
+	};
 
 	constexpr int MaxTCPServerBacklog = 1024;
 
@@ -27,17 +50,17 @@ namespace Common {
 		ifaddrs* ifaddr = nullptr;
 
 
-if (getifaddrs(&ifaddr) != -1) {
-	for (ifaddrs* ifa = ifaddr; ifa; ifa = ifa->ifa_next) {
-		if (ifa->ifa_addr && ifa->ifa_addr->sa_family == AF_INET &&
-			ifa->ifa_name == iface) {
-			getnameinfo(ifa->ifa_addr, sizeof(sockaddr_in),
-				buf, sizeof(buf), NULL, 0, NI_NUMERICHOST);
+		if (getifaddrs(&ifaddr) != -1) {
+			for (ifaddrs* ifa = ifaddr; ifa; ifa = ifa->ifa_next) {
+				if (ifa->ifa_addr && ifa->ifa_addr->sa_family == AF_INET &&
+					ifa->ifa_name == iface) {
+					getnameinfo(ifa->ifa_addr, sizeof(sockaddr_in),
+						buf, sizeof(buf), NULL, 0, NI_NUMERICHOST);
+				}
+			}
+			freeifaddrs(ifaddr);
 		}
-	}
-	freeifaddrs(ifaddr);
-}
-return buf;
+		return buf;
 	}
 
 	static bool setNonBlocking(int fd) {
@@ -75,7 +98,10 @@ return buf;
 			reinterpret_cast<void*>(&mcast_ttl), sizeof(mcast_ttl)) != -1;
 	}
 
-	//static bool join(int fd, const std::string& ip, const std::string& iface, int port);
+	inline auto join(int fd, const std::string& ip) -> bool {
+		const ip_mreq mreq{ {inet_addr(ip.c_str())}, {htonl(INADDR_ANY)} };
+		return (setsockopt(fd, IPPROTO_IP, IP_ADD_MEMBERSHIP, &mreq, sizeof(mreq)) != -1);
+	}
 
 	static int createSocket(Logger& logger, const std::string& t_ip,
 		const std::string& iface, int port, bool is_udp, bool is_blocking,
@@ -111,7 +137,7 @@ return buf;
 		int one = 1;
 		for (addrinfo* rp = result; rp; rp = rp->ai_next) {
 			fd = socket(rp->ai_family, rp->ai_socktype, rp->ai_protocol);
-			
+
 			if (fd == -1) {
 				logger.log("socket() failed. errno: %\n", strerror(errno));
 				return -1;
@@ -128,7 +154,7 @@ return buf;
 				}
 			}
 
-			if (!is_listening && connect(fd, rp->ai_addr, rp->ai_addrlen) == 1 && !wouldBlock()){
+			if (!is_listening && connect(fd, rp->ai_addr, rp->ai_addrlen) == 1 && !wouldBlock()) {
 				logger.log("connect() failed. errno: %\n", strerror(errno));
 				return -1;
 			}
