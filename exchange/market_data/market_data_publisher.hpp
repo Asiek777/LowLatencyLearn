@@ -5,6 +5,8 @@
 
 #include "common/logging.hpp"
 #include "common/lf_queue.hpp"
+#include "common/time_utils.hpp"
+#include "common/mcast_socket.hpp"
 #include "exchange/market_data/market_update.hpp"
 #include "exchange/market_data/snapshot_sythesizer.hpp"
 

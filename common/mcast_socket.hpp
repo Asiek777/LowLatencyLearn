@@ -41,7 +41,7 @@ namespace Common {
         std::vector<char> m_outbound_data;
         size_t m_next_send_valid_index = 0;
         std::vector<char> m_inbound_data;
-        size_t m_next_rcv_valid_index = 0;
+        size_t m_next_recv_valid_index = 0;
 
         /// Function wrapper for the method to call when data is read.
         std::function<void(McastSocket* s)> m_recv_callback = nullptr;
