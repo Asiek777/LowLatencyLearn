@@ -9,11 +9,13 @@ set(CMAKE_VERBOSE_MAKEFILE on)
 
 add_subdirectory(common)
 add_subdirectory(exchange)
+add_subdirectory(trading)
 
 add_subdirectory(chapter4)
 
 list(APPEND LIBS libcommon)
 list(APPEND LIBS libexchange)
+list(APPEND LIBS libtrading)
 list(APPEND LIBS pthread)
 
 file(GLOB SOURCES "*.cpp")
