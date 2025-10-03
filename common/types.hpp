@@ -102,5 +102,11 @@ namespace Common {
 		return "UNKNOWN";
 	}
 
+	inline constexpr auto sideToIndex(Side side) noexcept {
+		return static_cast<size_t>(side) + 1;
+	}
 
+	inline constexpr auto sideToValue(Side side) noexcept {
+		return static_cast<int>(side);
+	}
 }

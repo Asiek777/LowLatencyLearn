@@ -51,6 +51,8 @@ namespace Trading {
 
 		MarketOrderBook(TickerId ticker_id, Logger * logger);
 		~MarketOrderBook();
+
+		const BBO* getBBO() const noexcept { return &m_bbo; }
 	};
 
 	typedef std::array<MarketOrderBook*, ME_MAX_TICKERS> MarketOrderBookHashMap;
