@@ -109,4 +109,38 @@ namespace Common {
 	inline constexpr auto sideToValue(Side side) noexcept {
 		return static_cast<int>(side);
 	}
+
+	struct RiskCfg {
+		Qty m_max_order_size = 0;
+		Qty m_max_position = 0;
+		double m_max_loss = 0;
+
+		auto toString() const {
+			std::stringstream ss;
+
+			ss << "RiskCfg{" <<
+				"max-order-size:" << qtyToString(m_max_order_size) << " " <<
+				"max-position:" << qtyToString(m_max_position) << " " <<
+				"max-loss:" << m_max_loss <<
+				"}";
+			return ss.str();
+		}
+	};
+
+	struct TradeEngineCfg {
+		Qty m_clip = 0;
+		double m_threshold = 0;
+		RiskCfg m_risk_cfg;
+
+		auto toString() const {
+			std::stringstream ss;
+			ss << "TradeEngineCfg{" <<
+				"clip:" << qtyToString(m_clip) << " " <<
+				"thresh:" << m_threshold << " " <<
+				"risk:" << m_risk_cfg.toString() <<
+				"}";
+			return ss.str();
+		}
+	};
+	typedef std::array<TradeEngineCfg, ME_MAX_TICKERS> TradeEngineCfgHashMap;
 }
