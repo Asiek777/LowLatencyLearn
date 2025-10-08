@@ -35,7 +35,7 @@ namespace Trading {
 		m_run = false;
 	}
 
-	void OrderGateway::run() {
+	void OrderGateway::run() noexcept {
 		m_logger.log("%: % %() %\n", __FILE__, __LINE__,
 			__FUNCTION__, Common::getCurrentTimeStr(&m_time_str));
 

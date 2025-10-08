@@ -2,6 +2,7 @@
 
 #include <limits>
 #include <cstdint>
+#include <sstream>
 
 #include "common/macros.hpp"
 
