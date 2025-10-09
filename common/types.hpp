@@ -144,4 +144,40 @@ namespace Common {
 		}
 	};
 	typedef std::array<TradeEngineCfg, ME_MAX_TICKERS> TradeEngineCfgHashMap;
+
+	enum class AlgoType :int8_t {
+		INVALID = 0,
+		RANDOM = 1,
+		MAKER = 2,
+		TAKER = 3,
+		MAX = 4,
+	};
+
+	inline std::string algoTypeToString(AlgoType type) {
+		switch (type)
+		{
+		case Common::AlgoType::INVALID:
+			return "INVALID";
+		case Common::AlgoType::RANDOM:
+			return "RANDOM";
+		case Common::AlgoType::MAKER:
+			return "MAKER";
+		case Common::AlgoType::TAKER:
+			return "TAKER";
+		case Common::AlgoType::MAX:
+			return "MAX";
+		}
+		return "UNKNOWN";
+	};
+
+	inline AlgoType stringToAlgoType(const std::string& str) {
+		for (auto i = static_cast<int>(AlgoType::INVALID);
+			i <= static_cast<int>(AlgoType::MAX); i++) {
+			const auto algo_type = static_cast<AlgoType>(i);
+			if (algoTypeToString(algo_type) == str)
+				return algo_type;
+		}
+		return AlgoType::INVALID;
+	}
+
 }

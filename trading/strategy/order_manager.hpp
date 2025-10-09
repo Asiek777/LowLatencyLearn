@@ -28,15 +28,16 @@ namespace Trading {
 		OrderId m_next_order_id = 1;
 
 		OMOrderSideHashMap* getOMOrderSideHashMap(TickerId ticker_id) const;
-		void OrderManager::newOrder(OMOrder* order, TickerId ticker_id, 
-			Price price, Side side, Qty qty) noexcept;
-		void cancelOrder(OMOrder* order) noexcept;
 		void moveOrder(OMOrder* order, TickerId ticker_id, 
 			Price price, Side side, Qty qty) noexcept;
-		void moveOrders(TickerId ticker_id, Price bid_price, Price ask_price, Qty clip) noexcept;
 
 	public: 
 		OrderManager(Common::Logger* logger, TradeEngine* trade_engine, RiskManager& risk_manager);
 		void onOrderUpdate(const Exchange::MEClientResponse* client_response) noexcept;
+
+		void moveOrders(TickerId ticker_id, Price bid_price, Price ask_price, Qty clip) noexcept;
+		void OrderManager::newOrder(OMOrder* order, TickerId ticker_id, 
+			Price price, Side side, Qty qty) noexcept;
+		void cancelOrder(OMOrder* order) noexcept;
 	};
 }
