@@ -35,7 +35,7 @@ namespace Trading {
 			m_ticker_risk.at(i).m_risk_cfg = ticker_cfg[i].m_risk_cfg;
 		}
 	}
-	RiskCheckResult RiskManager::checkPreTradeRis(TickerId ticker_id, 
+	RiskCheckResult RiskManager::checkPreTradeRisk(TickerId ticker_id, 
 		Side side, Qty qty) const noexcept {
 		return m_ticker_risk.at(ticker_id).checkPreTradeRisk(side, qty);
 	}

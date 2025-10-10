@@ -1,5 +1,7 @@
 #include "liquidity_taker.hpp"
 
+#include "trading/strategy/trade_engine.hpp"
+
 namespace Trading {
 
 	LiquidityTaker::LiquidityTaker(Common::Logger* logger, TradeEngine* trade_engine,
@@ -7,15 +9,15 @@ namespace Trading {
 		const TradeEngineCfgHashMap& ticker_cfg) :
 		m_feature_engine(feature_engine), m_order_manager(order_manager),
 		m_logger(logger), m_ticker_cfg(ticker_cfg) {
-		trade_engine->m_algoOnOrderBookUpdate = [this]
+		trade_engine->f_algoOnOrderBookUpdate = [this]
 		(auto ticker_id, auto price, auto side, auto book) {
 			onOrderBookUpdate(ticker_id, price, side, book); };
 
-		trade_engine->m_algoOnTradeupdate = [this](auto market_update, auto book) {
+		trade_engine->f_algoOnTradeUpdate = [this](auto market_update, auto book) {
 			onTradeUpdate(market_update, book); };
 
-		trade_engine->m_algoOnOrderUpdate = [this](auto client_response) {
-			onOrderUpdate(client_response);	}
+		trade_engine->f_algoOnOrderUpdate = [this](auto client_response) {
+			onOrderUpdate(client_response);	};
 	}
 
 

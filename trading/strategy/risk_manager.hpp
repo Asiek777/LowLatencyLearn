@@ -56,7 +56,7 @@ namespace Trading {
 		RiskManager(Common::Logger* logger, const PositionKeeper* position_keeper,
 			const TradeEngineCfgHashMap& ticker_cfg);
 
-		RiskCheckResult checkPreTradeRis(TickerId ticker_id, Side side, Qty qty) const noexcept;
+		RiskCheckResult checkPreTradeRisk(TickerId ticker_id, Side side, Qty qty) const noexcept;
 	};
 
 }

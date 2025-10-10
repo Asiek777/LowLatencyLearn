@@ -1,5 +1,7 @@
 #include "market_order_book.hpp"
 
+#include "trading/strategy/trade_engine.hpp"
+
 namespace Trading {
 
 	MarketOrderBook::MarketOrderBook(TickerId ticker_id, Logger* logger) :
@@ -83,7 +85,7 @@ namespace Trading {
 		updateBBO(bid_updated, ask_updated);
 
 		m_trade_engine->onOrderBookUpdate(market_update->m_ticker_id,
-			market_update->m_price, market_update->m_side);
+			market_update->m_price, market_update->m_side, this);
 
 		m_logger->log("%:% %() % OrderBook\n%\n", __FILE__, __LINE__, __FUNCTION__,
 			Common::getCurrentTimeStr(&m_time_str),

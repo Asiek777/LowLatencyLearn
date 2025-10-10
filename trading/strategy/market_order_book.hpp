@@ -34,7 +34,6 @@ namespace Trading {
 		Logger* m_logger = nullptr;
 
 		void setTradeEngine(TradeEngine* trade_engine) { m_trade_engine = trade_engine; }
-		void onMarketUpdate(const Exchange::MEMarketUpdate* market_update) noexcept;
 
 		unsigned long priceToIndex(Price price) const noexcept;
 		MarketOrdersAtPrice* getOrdersAtPrice(Price price) const noexcept;
@@ -52,6 +51,7 @@ namespace Trading {
 		MarketOrderBook(TickerId ticker_id, Logger * logger);
 		~MarketOrderBook();
 
+		void onMarketUpdate(const Exchange::MEMarketUpdate* market_update) noexcept;
 		const BBO* getBBO() const noexcept { return &m_bbo; }
 	};
 

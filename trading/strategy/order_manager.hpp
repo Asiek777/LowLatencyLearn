@@ -27,7 +27,7 @@ namespace Trading {
 		OMOrderTickerSideHashMap m_ticker_side_order;
 		OrderId m_next_order_id = 1;
 
-		OMOrderSideHashMap* getOMOrderSideHashMap(TickerId ticker_id) const;
+		auto getOMOrderSideHashMap(TickerId ticker_id) const;
 		void moveOrder(OMOrder* order, TickerId ticker_id, 
 			Price price, Side side, Qty qty) noexcept;
 
@@ -36,7 +36,7 @@ namespace Trading {
 		void onOrderUpdate(const Exchange::MEClientResponse* client_response) noexcept;
 
 		void moveOrders(TickerId ticker_id, Price bid_price, Price ask_price, Qty clip) noexcept;
-		void OrderManager::newOrder(OMOrder* order, TickerId ticker_id, 
+		void newOrder(OMOrder* order, TickerId ticker_id, 
 			Price price, Side side, Qty qty) noexcept;
 		void cancelOrder(OMOrder* order) noexcept;
 	};

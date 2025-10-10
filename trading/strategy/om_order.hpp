@@ -17,8 +17,8 @@ namespace Trading {
 		DEAD = 4,
 	};
 
-	inline std::string OMOrderStateToString(OMOrderState) {
-		switch (sied) {
+	inline std::string OMOrderStateToString(OMOrderState state) {
+		switch (state) {
 		case OMOrderState::PENDING_NEW:
 			return "PENDING_NEW";
 		case OMOrderState::LIVE:

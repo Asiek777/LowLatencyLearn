@@ -36,7 +36,7 @@ namespace Trading {
 			}
 
 			m_logger->log("%: % %() % ticker: % price: % side: % mkt-price: % agg - trade - ratio : % \n",
-				__FILE__, _LINE__, __FUNCTION__, Common::getCurrentTimeStr(&time_str), ticker_id,
+				__FILE__, __LINE__, __FUNCTION__, Common::getCurrentTimeStr(&m_time_str), ticker_id,
 				Common::priceToString(price).c_str(), Common::sideToString(side).c_str(),
 				m_mkt_price, m_agg_trade_qty_ratio);
 		}

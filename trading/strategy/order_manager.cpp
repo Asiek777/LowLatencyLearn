@@ -1,5 +1,7 @@
 #include "order_manager.hpp"
 
+#include "trading/strategy/trade_engine.hpp"
+
 namespace Trading {
 
 	OrderManager::OrderManager(Common::Logger* logger,
@@ -42,7 +44,7 @@ namespace Trading {
 		}
 	}
 
-	OMOrderSideHashMap* OrderManager::getOMOrderSideHashMap(TickerId ticker_id) const {
+	auto OrderManager::getOMOrderSideHashMap(TickerId ticker_id) const {
 		return &(m_ticker_side_order.at(ticker_id));
 	}
 
@@ -63,7 +65,7 @@ namespace Trading {
 
 	void OrderManager::cancelOrder(OMOrder* order) noexcept {
 		const Exchange::MEClientRequest cancel_request{ Exchange::ClientRequestType::CANCEL,
-			m_trade_engine->clientId(), order->ticker_id, order->m_order_id, order->m_side, order->m_price, order->m_qty };
+			m_trade_engine->clientId(), order->m_ticker_id, order->m_order_id, order->m_side, order->m_price, order->m_qty };
 		m_trade_engine->sendClientRequest(&cancel_request);
 
 		order->m_order_state = OMOrderState::PENDING_CANCEL;

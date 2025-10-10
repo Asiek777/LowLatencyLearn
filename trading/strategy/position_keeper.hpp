@@ -40,7 +40,7 @@ namespace Trading {
 			const auto old_position = m_position;
 			const auto side_index = sideToIndex(client_response->m_side);
 			const auto opp_side_index = sideToIndex(
-				client_response == Side::BUY ? Side::SELL : Side::BUY);
+				client_response->m_side == Side::BUY ? Side::SELL : Side::BUY);
 			const auto side_value = sideToValue(client_response->m_side);
 			m_position += client_response->m_exec_qty * side_value;
 			m_volume += client_response->m_exec_qty;
@@ -54,7 +54,7 @@ namespace Trading {
 					std::abs(old_position)) * (opp_side_vwap - client_response->m_price) *
 					sideToValue(client_response->m_side);
 				if (m_position * old_position < 0) {
-					m_open_vwap[side_index] = client_response->m_price * std::abs(m_position));
+					m_open_vwap[side_index] = client_response->m_price * std::abs(m_position);
 					m_open_vwap[opp_side_index] = 0;
 				}
 			}
@@ -116,6 +116,8 @@ namespace Trading {
 		std::array<PositionInfo, ME_MAX_TICKERS> m_ticker_position;
 
 	public:
+		PositionKeeper(Common::Logger* logger) : m_logger(logger) {};
+
 		auto getPositionInfo(TickerId ticker_id) const noexcept {
 			return &(m_ticker_position.at(ticker_id));
 		}
